@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+dist/
+coverage/
+
+# Logs
+yarn-error.log
+npm-debug.log
+pnpm-debug.log
+
+# IDE
+.vscode/
+.idea/
+.DS_Store

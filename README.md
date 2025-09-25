@@ -1,17 +1,48 @@
 # Telecom Idle
 
-Telecom Idle is an incremental idle-style game that follows communication technology from hand-delivered messages to modern telecom infrastructure. Players progress by unlocking new communication methods, automating delivery, and scaling throughput over time.
+Telecom Idle is an incremental idle game about riding the evolution of communications technology. Each era introduces new production methods that outperform the previous, letting the money total climb faster when you make smart choices about upgrades and staffing.
 
-## Project Goals
+## Current Status
 
-- Capture the historical progression of telecommunications as gameplay milestones.
-- Provide both active clicking and offline idle growth mechanics.
-- Support modular content updates for new eras and systems.
+- ✅ Foundational design decisions captured in `FOUNDATION_DECISIONS.md`
+- ✅ High-level MVP and technical plan in `docs/GAME_DESIGN_PLAN.md`
+- ✅ React + TypeScript + Vite project with Courier, Telegraph, Telephone, and Digital Switching eras implemented
+- 🚧 Upcoming: additional eras beyond Telegraph, prestige loop, balancing passes, and polish
 
-## Getting Started
+## Running the Project
 
-The repository is in early setup. Initial tasks include defining gameplay loops, building the core idle economy systems, and establishing UI/UX foundations. Further documentation and development guidelines will be added as the project matures.
+```bash
+npm install
+npm run dev
+```
 
-## Contributing
+This launches the Vite dev server (defaults to `http://localhost:5173`). The game auto-saves to `localStorage` every tick, so progress persists between reloads.
 
-Pending future decisions on project structure and tooling. For now, contributions focus on foundational design docs and prototypes.
+## Project Structure
+
+- `src/data/` – Declarative era/unit/upgrade definitions
+- `src/state/` – Zustand store, simulation loop, derived selectors
+- `src/components/` – UI panels for resources, units, upgrades, and progression
+- `docs/` – Design documentation and future planning notes
+
+## Gameplay Outline
+
+- Earn money passively from unlocked era units (Courier, Telegraph, Telephone, Digital) and spend it on more units or upgrades.
+- Manage workforce capacity: every unit consumes staff, and upgrades can expand the cap.
+- Trigger manual boosts to temporarily double income while active.
+- Build toward the Telegraph era by meeting money and tech research goals, then purchase the unlock.
+- Decommission older units to reclaim workforce (and a partial refund) if they no longer fit your strategy.
+- Generate and manage bandwidth, a new resource gating later-era research and unlocks.
+- Activate the bandwidth amplifier to trade bandwidth per second for faster tech research.
+- Explore the Cloud Native era where compute credits and pod orchestration unlock deep strategic choices.
+- Manage compute credits and deploy cloud pods to customize global multipliers.
+- Invest tech into research projects for permanent economy-wide bonuses.
+
+## Next Steps
+
+1. Continue tuning Courier/Telegraph balance across different play styles.
+2. Design and implement the next era in the progression ladder.
+3. Introduce basic audio loop and visual feedback for major actions.
+4. Layer in automated tests for store logic and offline catch-up.
+
+Feel free to edit `FOUNDATION_DECISIONS.md` or `docs/GAME_DESIGN_PLAN.md` as the vision evolves. Open issues or TODOs can live in a future `docs/roadmap.md` once priorities firm up.

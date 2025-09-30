@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_LEADERBOARD_ENDPOINT: https://telecom-leaderboard.mattjparkes.workers.dev
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node

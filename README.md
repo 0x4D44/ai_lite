@@ -47,6 +47,78 @@ This repo is prepped to publish at `https://<your-username>.github.io/telecom_id
 4. When the workflow finishes, the published URL appears in the workflow summary and on the Pages settings screen.
 
 The Vite config automatically uses the `/telecom_idle/` base path during CI builds, so no additional configuration is required for assets to resolve correctly.
+
+## Leaderboard Backend
+
+The in-game leaderboard expects a REST endpoint with two routes:
+
+```
+GET  /leaderboard?view=money|cloud_time  -> returns [{ nickname, score, recordedAt }]
+POST /submit                            -> accepts { nickname, totalMoney, cloudTimeSeconds }
+```
+
+You can host this cheaply (often free) on Cloudflare Workers with KV/D1 storage. Once deployed, expose the base URL to the client by setting an environment variable:
+
+```
+VITE_LEADERBOARD_ENDPOINT=https://your-worker.example.workers.dev
+```
+
+Without this value the leaderboard UI still appears, but it remains in read-only/demo mode and does not attempt network calls.
+
+### Example: Cloudflare Worker
+
+You can scaffold a very small Worker using [Workers KV](https://developers.cloudflare.com/workers/wrangler/workers-kv/) to persist scoreboard data.
+
+```ts
+// worker.ts
+import { Env } from './env';
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+    if (request.method === 'POST' && url.pathname === '/submit') {
+      const body = await request.json();
+      const entries = await getEntries(env);
+      entries.push({
+        nickname: body.nickname ?? 'Anonymous',
+        scoreMoney: body.totalMoney ?? 0,
+        scoreCloud: body.cloudTimeSeconds ?? null,
+        recordedAt: new Date().toISOString(),
+      });
+      await env.LEADERBOARD.put('entries', JSON.stringify(entries));
+      return new Response('ok');
+    }
+
+    if (request.method === 'GET' && url.pathname === '/leaderboard') {
+      const view = url.searchParams.get('view') === 'cloud_time' ? 'cloud_time' : 'money';
+      const entries = await getEntries(env);
+      const sorted = entries
+        .filter((entry) => (view === 'money' ? true : entry.scoreCloud !== null))
+        .sort((a, b) =>
+          view === 'money'
+            ? b.scoreMoney - a.scoreMoney
+            : (a.scoreCloud ?? Infinity) - (b.scoreCloud ?? Infinity),
+        )
+        .slice(0, 50)
+        .map((entry) => ({
+          nickname: entry.nickname,
+          score: view === 'money' ? entry.scoreMoney : entry.scoreCloud,
+          recordedAt: entry.recordedAt,
+        }));
+      return Response.json(sorted);
+    }
+
+    return new Response('Not Found', { status: 404 });
+  },
+};
+
+async function getEntries(env: Env) {
+  const stored = await env.LEADERBOARD.get('entries');
+  return stored ? (JSON.parse(stored) as any[]) : [];
+}
+```
+
+`wrangler.toml` would bind a KV namespace named `LEADERBOARD`. Deploy the worker, grab the public URL, and set `VITE_LEADERBOARD_ENDPOINT` accordingly.
 - Invest tech into research projects for permanent economy-wide bonuses.
 
 ## Next Steps

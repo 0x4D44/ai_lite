@@ -24,6 +24,12 @@
   gap: 1.5rem;
 }
 
+.utility-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
 .tabbed-content {
   display: flex;
   flex-direction: column;
@@ -283,6 +289,14 @@
   border-radius: 999px;
   font-size: 0.85rem;
   color: rgba(215, 245, 255, 0.95);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-fixed {
+  min-width: 3.5rem;
+  justify-content: space-evenly;
 }
 
 .warning {
@@ -422,4 +436,25 @@ button:disabled {
   .column-side {
     flex: 1 1 auto;
   }
+}
+.text-input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(5, 11, 29, 0.65);
+  color: #e6edff;
+  font-size: 1rem;
+}
+
+.text-input:focus {
+  outline: 2px solid rgba(115, 224, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.warning-block {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 152, 128, 0.18);
+  color: #ffd2c6;
 }

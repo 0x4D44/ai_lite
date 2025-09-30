@@ -97,6 +97,8 @@ interface GameDataState {
   bandwidthBoost: BandwidthBoostState;
   pods: Record<PodType, number>;
   podBonuses: PodBonusesState;
+  statistics: GameStatistics;
+  profile: PlayerProfile;
 }
 
 interface GameActions {
@@ -114,6 +116,7 @@ interface GameActions {
   setBandwidthBoostTier: (tier: BandwidthBoostTier) => void;
   addPod: (podType: PodType) => boolean;
   removePod: (podType: PodType) => boolean;
+  setNickname: (nickname: string) => void;
 }
 
 interface ResearchQueueItem {
@@ -194,6 +197,16 @@ interface PodBonusesState {
   suspended: boolean;
 }
 
+interface GameStatistics {
+  totalMoneyEarned: number;
+  gameStartedAt: number;
+  cloudNativeUnlockedAt: number | null;
+}
+
+interface PlayerProfile {
+  nickname: string;
+}
+
 export type GameState = GameDataState & GameActions;
 
 const createInitialState = (): GameDataState => ({
@@ -238,6 +251,14 @@ const createInitialState = (): GameDataState => ({
   },
   pods: sanitizePods(),
   podBonuses: createDefaultPodBonuses(),
+  statistics: {
+    totalMoneyEarned: 0,
+    gameStartedAt: Date.now(),
+    cloudNativeUnlockedAt: null,
+  },
+  profile: {
+    nickname: '',
+  },
 });
 
 const getTotalWorkforce = (state: GameDataState): number => {
@@ -445,6 +466,13 @@ export const useGameStore = create<GameState>()(
             };
           }
 
+          if (moneyGain > 0) {
+            updates.statistics = {
+              ...state.statistics,
+              totalMoneyEarned: state.statistics.totalMoneyEarned + moneyGain,
+            };
+          }
+
           if (
             currentMoneyRate !== moneyPerSecond ||
             currentTechRate !== techPerSecond ||
@@ -630,6 +658,15 @@ export const useGameStore = create<GameState>()(
 
         return true;
       },
+      setNickname: (nickname) => {
+        set((prev) => ({
+          ...prev,
+          profile: {
+            ...prev.profile,
+            nickname: nickname.slice(0, 24),
+          },
+        }));
+      },
       purchaseUpgrade: (upgradeId) => {
         const state = get();
         const era = getEraDefinition(state.currentEraId);
@@ -770,11 +807,13 @@ export const useGameStore = create<GameState>()(
         const currentMoney = state.resources.money ?? 0;
         const currentTech = state.resources.tech ?? 0;
         const currentBandwidth = state.resources.bandwidth ?? 0;
+        const currentCompute = state.resources.compute ?? 0;
 
         if (
           currentMoney < requirement.money ||
           currentTech < requirement.tech ||
-          (requirement.bandwidth ?? 0) > currentBandwidth
+          (requirement.bandwidth ?? 0) > currentBandwidth ||
+          (requirement.compute ?? 0) > currentCompute
         ) {
           return false;
         }
@@ -783,6 +822,14 @@ export const useGameStore = create<GameState>()(
           const updatedUnlocked = prev.unlockedEraIds.includes(nextEraId)
             ? prev.unlockedEraIds
             : [...prev.unlockedEraIds, nextEraId];
+
+          const updatedStatistics: GameStatistics = {
+            ...prev.statistics,
+            cloudNativeUnlockedAt:
+              nextEraId === cloudNativeEra.id && prev.statistics.cloudNativeUnlockedAt == null
+                ? Date.now()
+                : prev.statistics.cloudNativeUnlockedAt,
+          };
 
           return {
             ...prev,
@@ -795,8 +842,12 @@ export const useGameStore = create<GameState>()(
               bandwidth: requirement.bandwidth
                 ? clamp((prev.resources.bandwidth ?? 0) - requirement.bandwidth)
                 : prev.resources.bandwidth ?? 0,
+              compute: requirement.compute
+                ? clamp((prev.resources.compute ?? 0) - requirement.compute)
+                : prev.resources.compute ?? 0,
             },
             lastTickAt: Date.now(),
+            statistics: updatedStatistics,
           };
         });
 
@@ -835,11 +886,22 @@ export const useGameStore = create<GameState>()(
         researchQueue: state.researchQueue,
         bandwidthBoost: state.bandwidthBoost,
         pods: state.pods,
+        podBonuses: state.podBonuses,
+        statistics: state.statistics,
+        profile: state.profile,
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.pods = sanitizePods(state.pods ?? {});
           state.podBonuses = recalculatePodBonuses(state.pods);
+          state.statistics = {
+            totalMoneyEarned: state.statistics?.totalMoneyEarned ?? 0,
+            gameStartedAt: state.statistics?.gameStartedAt ?? Date.now(),
+            cloudNativeUnlockedAt: state.statistics?.cloudNativeUnlockedAt ?? null,
+          };
+          state.profile = {
+            nickname: state.profile?.nickname ?? '',
+          };
         }
       },
     },
@@ -855,6 +917,8 @@ export const selectBonuses = (state: GameState) => state.bonuses;
 export const selectManualBoost = (state: GameState) => state.manualBoost;
 export const selectCurrentEra = (state: GameState) => getEraDefinition(state.currentEraId);
 export const selectUnlockedEraIds = (state: GameState) => state.unlockedEraIds;
+export const selectStatistics = (state: GameState) => state.statistics;
+export const selectProfile = (state: GameState) => state.profile;
 
 export const selectTotalWorkforce = (state: GameState) => getTotalWorkforce(state);
 

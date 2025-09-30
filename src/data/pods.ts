@@ -19,7 +19,7 @@ export const POD_DEFINITIONS: PodDefinition[] = [
     id: 'ingress-gateway',
     name: 'Ingress Gateway Pods',
     description: 'Balance traffic and monetize low-latency entry points. Boosts revenue and bandwidth.',
-    computeUpkeep: 15,
+    computeUpkeep: 150,
     effects: {
       money: 0.20,
       bandwidth: 0.10,
@@ -30,7 +30,7 @@ export const POD_DEFINITIONS: PodDefinition[] = [
     id: 'service-mesh',
     name: 'Service Mesh Pods',
     description: 'Advanced routing and resilience increase tech innovation and bandwidth capacity.',
-    computeUpkeep: 22,
+    computeUpkeep: 220,
     effects: {
       tech: 0.25,
       bandwidth: 0.15,
@@ -41,7 +41,7 @@ export const POD_DEFINITIONS: PodDefinition[] = [
     id: 'observability-stack',
     name: 'Observability Stack Pods',
     description: 'Telemetry and auto-healing improve efficiency, increasing money and compute output.',
-    computeUpkeep: 18,
+    computeUpkeep: 180,
     effects: {
       money: 0.15,
       compute: 0.2,
@@ -52,7 +52,7 @@ export const POD_DEFINITIONS: PodDefinition[] = [
     id: 'ai-optimizer',
     name: 'AI Optimizer Pods',
     description: 'Predictive scaling and call optimization explode revenue and tech growth.',
-    computeUpkeep: 35,
+    computeUpkeep: 350,
     effects: {
       money: 0.35,
       tech: 0.30,

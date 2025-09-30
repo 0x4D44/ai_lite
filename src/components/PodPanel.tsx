@@ -46,7 +46,7 @@ export const PodPanel = () => {
                   <h3>{pod.name}</h3>
                   <p className="subdued">{pod.description}</p>
                 </div>
-                <div className="badge">
+                <div className="badge badge-fixed">
                   {current} / {pod.max}
                 </div>
               </div>

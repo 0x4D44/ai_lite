@@ -12,10 +12,12 @@ import { ResearchPanel } from './components/ResearchPanel';
 import { ResearchQueuePanel } from './components/ResearchQueuePanel';
 import { BandwidthBoostPanel } from './components/BandwidthBoostPanel';
 import { PodPanel } from './components/PodPanel';
+import { LeaderboardPanel } from './components/LeaderboardPanel';
+import { NicknameForm } from './components/NicknameForm';
 import { selectCurrentEra, useGameStore } from './state/gameStore';
 import { useGameLoop } from './state/useGameLoop';
 
-type MainTab = 'production' | 'research' | 'settings';
+type MainTab = 'production' | 'research' | 'amplifier' | 'cloud' | 'leaderboard' | 'settings';
 
 function App() {
   useGameLoop();
@@ -30,7 +32,10 @@ function App() {
       </header>
       <main className="app-content">
         <ResourceDashboard />
-        <ManualBoostButton />
+        <div className="utility-grid">
+          <ManualBoostButton />
+          <EraProgress />
+        </div>
         <section className="tabbed-content">
           <nav className="tab-bar">
             <button
@@ -47,6 +52,31 @@ function App() {
             >
               Research
             </button>
+            {useGameStore((state) => state.unlockedEraIds.includes('digital')) && (
+              <button
+                type="button"
+                className={`tab-button ${activeTab === 'amplifier' ? 'tab-active' : ''}`}
+                onClick={() => setActiveTab('amplifier')}
+              >
+                Amplifier
+              </button>
+            )}
+            {useGameStore((state) => state.unlockedEraIds.includes('cloud-native')) && (
+              <button
+                type="button"
+                className={`tab-button ${activeTab === 'cloud' ? 'tab-active' : ''}`}
+                onClick={() => setActiveTab('cloud')}
+              >
+                Cloud Ops
+              </button>
+            )}
+            <button
+              type="button"
+              className={`tab-button ${activeTab === 'leaderboard' ? 'tab-active' : ''}`}
+              onClick={() => setActiveTab('leaderboard')}
+            >
+              Leaderboard
+            </button>
             <button
               type="button"
               className={`tab-button ${activeTab === 'settings' ? 'tab-active' : ''}`}
@@ -62,16 +92,35 @@ function App() {
               </div>
               <div className="column-side">
                 <UpgradePanel />
-                <EraProgress />
               </div>
             </div>
           ) : activeTab === 'research' ? (
             <div className="tab-panels">
               <div className="column-main">
                 <ResearchQueuePanel />
-                <BandwidthBoostPanel />
-                <PodPanel />
                 <ResearchPanel />
+              </div>
+              <div className="column-side" />
+            </div>
+          ) : activeTab === 'amplifier' ? (
+            <div className="tab-panels">
+              <div className="column-main">
+                <BandwidthBoostPanel />
+              </div>
+              <div className="column-side" />
+            </div>
+          ) : activeTab === 'cloud' ? (
+            <div className="tab-panels">
+              <div className="column-main">
+                <PodPanel />
+              </div>
+              <div className="column-side" />
+            </div>
+          ) : activeTab === 'leaderboard' ? (
+            <div className="tab-panels">
+              <div className="column-main">
+                <NicknameForm />
+                <LeaderboardPanel />
               </div>
               <div className="column-side" />
             </div>

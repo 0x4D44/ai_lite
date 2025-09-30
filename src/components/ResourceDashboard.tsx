@@ -14,6 +14,8 @@ export const ResourceDashboard = () => {
   const totalWorkforce = useGameStore(selectTotalWorkforce);
   const usedWorkforce = useGameStore(selectUsedWorkforce);
   const availableWorkforce = Math.max(0, totalWorkforce - usedWorkforce);
+  const telegraphUnlocked = useGameStore((state) => state.unlockedEraIds.includes('telegraph'));
+  const digitalUnlocked = useGameStore((state) => state.unlockedEraIds.includes('digital'));
   const bandwidth = resources.bandwidth ?? 0;
   const bandwidthRate = production.bandwidth ?? 0;
   const compute = resources.compute ?? 0;
@@ -52,24 +54,28 @@ export const ResourceDashboard = () => {
             <ResourceValue resource="workforce" value={`${formatNumber(availableWorkforce)} idle`} />
           </span>
         </div>
-        <div className="resource-card">
-          <span className="label">Bandwidth</span>
-          <span className="value">
-            <ResourceValue resource="bandwidth" value={formatNumber(bandwidth)} />
-          </span>
-          <span className="rate">
-            <ResourceValue resource="bandwidth" value={`${formatNumber(bandwidthRate)}/s`} />
-          </span>
-        </div>
-        <div className="resource-card">
-          <span className="label">Compute Credits</span>
-          <span className="value">
-            <ResourceValue resource="compute" value={formatNumber(compute)} />
-          </span>
-          <span className="rate">
-            <ResourceValue resource="compute" value={`${formatNumber(computeRate)}/s`} />
-          </span>
-        </div>
+        {telegraphUnlocked && (
+          <div className="resource-card">
+            <span className="label">Bandwidth</span>
+            <span className="value">
+              <ResourceValue resource="bandwidth" value={formatNumber(bandwidth)} />
+            </span>
+            <span className="rate">
+              <ResourceValue resource="bandwidth" value={`${formatNumber(bandwidthRate)}/s`} />
+            </span>
+          </div>
+        )}
+        {digitalUnlocked && (
+          <div className="resource-card">
+            <span className="label">Compute Credits</span>
+            <span className="value">
+              <ResourceValue resource="compute" value={formatNumber(compute)} />
+            </span>
+            <span className="rate">
+              <ResourceValue resource="compute" value={`${formatNumber(computeRate)}/s`} />
+            </span>
+          </div>
+        )}
       </div>
     </section>
   );

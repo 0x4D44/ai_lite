@@ -36,6 +36,17 @@ This launches the Vite dev server (defaults to `http://localhost:5173`). The gam
 - Activate the bandwidth amplifier to trade bandwidth per second for faster tech research.
 - Explore the Cloud Native era where compute credits and pod orchestration unlock deep strategic choices.
 - Manage compute credits and deploy cloud pods to customize global multipliers.
+
+## Deploying to GitHub Pages
+
+This repo is prepped to publish at `https://<your-username>.github.io/telecom_idle/` via GitHub Pages.
+
+1. Push the latest changes to `main`.
+2. In GitHub, go to **Settings → Pages** and choose **GitHub Actions** as the source.
+3. The `Deploy to GitHub Pages` workflow (under `.github/workflows/deploy.yml`) builds the Vite project and uploads `dist/` automatically. Manually trigger it once via **Actions → Deploy to GitHub Pages → Run workflow** if needed.
+4. When the workflow finishes, the published URL appears in the workflow summary and on the Pages settings screen.
+
+The Vite config automatically uses the `/telecom_idle/` base path during CI builds, so no additional configuration is required for assets to resolve correctly.
 - Invest tech into research projects for permanent economy-wide bonuses.
 
 ## Next Steps

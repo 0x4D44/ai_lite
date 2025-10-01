@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VITE_LEADERBOARD_ENDPOINT: https://telecom-leaderboard.mattjparkes.workers.dev
+      VITE_BASE_PATH: ${{ github.event.repository.name }}
+      VITE_LEADERBOARD_ENDPOINT: ''
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node

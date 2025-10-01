@@ -50,12 +50,12 @@ export const EraProgress = () => {
     <section className="panel">
       <header className="panel-header">
         <h2>Research Next Era</h2>
-        <p className="subdued">Spend savings to unlock {nextEra.name} advancements.</p>
+        <p className="subdued">Invest funding to unlock {nextEra.name} advancements.</p>
       </header>
       <div className="progress-list">
         <div className="progress-item">
           <div className="progress-header">
-            <span>Money Goal</span>
+            <span>Funding Goal</span>
             <ResourceValue
               resource="money"
               value={`${formatNumber(resources.money)} / ${formatNumber(requirement.money)}`}
@@ -67,7 +67,7 @@ export const EraProgress = () => {
         </div>
         <div className="progress-item">
           <div className="progress-header">
-            <span>Tech Goal</span>
+            <span>Research Goal</span>
             <ResourceValue
               resource="tech"
               value={`${formatNumber(resources.tech)} / ${formatNumber(requirement.tech)}`}
@@ -80,7 +80,7 @@ export const EraProgress = () => {
         {bandwidthRequirement > 0 && (
           <div className="progress-item">
             <div className="progress-header">
-              <span>Bandwidth Goal</span>
+              <span>Data Flow Goal</span>
               <ResourceValue
                 resource="bandwidth"
                 value={`${formatNumber(resources.bandwidth)} / ${formatNumber(bandwidthRequirement)}`}

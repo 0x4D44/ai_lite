@@ -2,13 +2,13 @@ import type { EraDefinition } from '../types';
 
 export const cloudNativeEra: EraDefinition = {
   id: 'cloud-native',
-  name: 'Cloud Native Era',
-  flavorText: 'Fully virtualized telecom stacks orchestrated across global cloud regions.',
+  name: 'Autonomous Intelligence',
+  flavorText: 'Self-directed agents coordinate physical and digital ecosystems without human intervention.',
   units: [
     {
       id: 'multi-tenancy-grid',
-      name: 'Multi-Tenancy Grid',
-      description: 'Composable workloads monetize telecom APIs and compute on demand.',
+      name: 'Generalist Agent Fleet',
+      description: 'Composable agents handle end-to-end workflows for every client segment.',
       baseCost: 620000,
       costMultiplier: 1.24,
       workforceCost: 9,
@@ -21,8 +21,8 @@ export const cloudNativeEra: EraDefinition = {
     },
     {
       id: 'edge-ai-fleet',
-      name: 'Edge AI Fleet',
-      description: 'Predictive services at the edge drive new revenue and massive compute needs.',
+      name: 'Robotics Swarm',
+      description: 'Sensor-rich robots deliver autonomous services with massive compute needs.',
       baseCost: 1250000,
       costMultiplier: 1.27,
       workforceCost: 12,
@@ -35,8 +35,8 @@ export const cloudNativeEra: EraDefinition = {
     },
     {
       id: 'global-control-plane',
-      name: 'Global Control Plane',
-      description: 'Unified orchestration plane automates network slices worldwide.',
+      name: 'Universal Orchestration Core',
+      description: 'A global intent engine coordinates agents across every vertical.',
       baseCost: 2800000,
       costMultiplier: 1.3,
       workforceCost: 14,
@@ -51,8 +51,8 @@ export const cloudNativeEra: EraDefinition = {
   upgrades: [
     {
       id: 'gitops-automation',
-      name: 'GitOps Automation',
-      description: 'Declarative pipelines accelerate deployment, raising revenue and tech alike.',
+      name: 'Continuous Deployment Mesh',
+      description: 'Autonomous rollout mesh lifts funding by 35% and research by 30%.',
       cost: 1650000,
       effects: [
         {
@@ -67,8 +67,8 @@ export const cloudNativeEra: EraDefinition = {
     },
     {
       id: 'platform-observability',
-      name: 'Platform Observability',
-      description: 'Unified telemetry supercharges pod efficiency and compute output.',
+      name: 'Sentient Observability',
+      description: 'Self-healing telemetry amplifies data flow by 25% and research by 15%.',
       cost: 2100000,
       effects: [
         {
@@ -83,8 +83,8 @@ export const cloudNativeEra: EraDefinition = {
     },
     {
       id: 'intent-based-networking',
-      name: 'Intent-Based Networking',
-      description: 'AI-driven intent pipelines boost every metric dramatically.',
+      name: 'Intent Cascade Orchestrator',
+      description: 'Cascading intent layers boost every metric dramatically.',
       cost: 3250000,
       effects: [
         {

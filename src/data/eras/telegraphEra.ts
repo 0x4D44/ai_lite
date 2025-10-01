@@ -2,13 +2,13 @@ import type { EraDefinition } from '../types';
 
 export const telegraphEra: EraDefinition = {
   id: 'telegraph',
-  name: 'Telegraph Era',
-  flavorText: 'Electric signals span continents. Instant communication unlocks new profit frontiers.',
+  name: 'Algorithmic Awakening',
+  flavorText: 'Breakthrough algorithms and vast datasets ignite exponential AI progress.',
   units: [
     {
       id: 'telegraph-operator',
-      name: 'Telegraph Operator',
-      description: 'Skilled operators encode and decode messages around the clock.',
+      name: 'Model Trainer',
+      description: 'Specialists orchestrate gradient descent runs around the clock.',
       baseCost: 550,
       costMultiplier: 1.18,
       workforceCost: 3,
@@ -20,8 +20,8 @@ export const telegraphEra: EraDefinition = {
     },
     {
       id: 'relay-station',
-      name: 'Relay Station',
-      description: 'Amplifies telegraph signals to cross vast distances reliably.',
+      name: 'Data Pipeline Orchestrator',
+      description: 'Automates feature flows and streaming validation across regions.',
       baseCost: 1800,
       costMultiplier: 1.22,
       workforceCost: 4,
@@ -33,8 +33,8 @@ export const telegraphEra: EraDefinition = {
     },
     {
       id: 'transatlantic-line',
-      name: 'Transatlantic Line',
-      description: 'A monumental undersea cable delivering instant international connections.',
+      name: 'Global Dataset Deal',
+      description: 'Secures exclusive data partnerships that supercharge research velocity.',
       baseCost: 6200,
       costMultiplier: 1.26,
       workforceCost: 6,
@@ -48,8 +48,8 @@ export const telegraphEra: EraDefinition = {
   upgrades: [
     {
       id: 'automated-switchboards',
-      name: 'Automated Switchboards',
-      description: 'Mechanical switchboards double operator throughput.',
+      name: 'AutoML Scheduling',
+      description: 'Automated experiment schedulers double Model Trainer throughput.',
       cost: 4200,
       effects: [
         {
@@ -61,8 +61,8 @@ export const telegraphEra: EraDefinition = {
     },
     {
       id: 'long-distance-tuning',
-      name: 'Long-distance Tuning',
-      description: 'Fine-tune relay stations for 35% more revenue.',
+      name: 'Pipeline Optimization',
+      description: 'Optimized data flows raise orchestrator revenue by 35%.',
       cost: 6800,
       effects: [
         {
@@ -74,8 +74,8 @@ export const telegraphEra: EraDefinition = {
     },
     {
       id: 'international-contracts',
-      name: 'International Contracts',
-      description: 'Global partnerships increase all revenue by 45%.',
+      name: 'Marketplace Launch',
+      description: 'Global AI marketplace partnerships increase all funding by 45%.',
       cost: 9500,
       effects: [
         {
@@ -86,8 +86,8 @@ export const telegraphEra: EraDefinition = {
     },
     {
       id: 'engineering-guild',
-      name: 'Engineering Guild',
-      description: 'Shared expertise adds 18 workforce capacity.',
+      name: 'Research Consortium',
+      description: 'Shared lab access adds 18 talent capacity.',
       cost: 5200,
       effects: [
         {

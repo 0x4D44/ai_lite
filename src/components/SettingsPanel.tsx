@@ -33,7 +33,7 @@ export const SettingsPanel = () => {
         <button type="button" className="secondary" onClick={handleReset} disabled={resetting}>
           {resetting ? 'Resetting…' : 'Reset Progress'}
         </button>
-        <p className="subdued">Clears your save from this browser and restarts the Courier Era.</p>
+        <p className="subdued">Clears your save from this browser and restarts the Data Labeling Frontier.</p>
       </div>
     </section>
   );

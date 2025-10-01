@@ -2,14 +2,14 @@ import type { EraDefinition } from '../types';
 
 export const courierEra: EraDefinition = {
   id: 'courier',
-  name: 'Courier Era',
+  name: 'Data Labeling Frontier',
   flavorText:
-    'Hand-delivered messages and horse relays keep the world connected. Smart logistics keep profits climbing.',
+    'Bootstrapping AI datasets with distributed human annotation networks.',
   units: [
     {
       id: 'hand-courier',
-      name: 'Hand Courier',
-      description: 'Individual runners delivering letters door-to-door.',
+      name: 'Crowd Annotator',
+      description: 'Gig-based annotators label raw data to fund early research.',
       baseCost: 15,
       costMultiplier: 1.16,
       workforceCost: 1,
@@ -20,8 +20,8 @@ export const courierEra: EraDefinition = {
     },
     {
       id: 'horse-relay',
-      name: 'Horse Relay',
-      description: 'Coordinated horse routes relay messages faster across distance.',
+      name: 'Specialist Labeling Studio',
+      description: 'Trained teams tackle complex edge cases for higher-quality datasets.',
       baseCost: 200,
       costMultiplier: 1.2,
       workforceCost: 2,
@@ -34,8 +34,8 @@ export const courierEra: EraDefinition = {
   upgrades: [
     {
       id: 'organized-routes',
-      name: 'Organized Routes',
-      description: 'Route optimization boosts all delivery revenue by 25%.',
+      name: 'Workflow Orchestration',
+      description: 'Task routing pipelines boost all funding by 25%.',
       cost: 320,
       effects: [
         {
@@ -46,8 +46,8 @@ export const courierEra: EraDefinition = {
     },
     {
       id: 'apprentice-program',
-      name: 'Apprentice Program',
-      description: 'Train new couriers to expand your workforce by 6.',
+      name: 'Bootcamp Scholarships',
+      description: 'Scholarships grow the early talent pool by 6.',
       cost: 260,
       effects: [
         {
@@ -58,8 +58,8 @@ export const courierEra: EraDefinition = {
     },
     {
       id: 'regional-hiring',
-      name: 'Regional Hiring Offices',
-      description: 'Permanent hiring fairs add 10 workforce capacity.',
+      name: 'Partner Incubators',
+      description: 'University incubators add 10 talent capacity.',
       cost: 620,
       effects: [
         {
@@ -70,8 +70,8 @@ export const courierEra: EraDefinition = {
     },
     {
       id: 'relay-barracks',
-      name: 'Relay Barracks',
-      description: 'Housing for couriers opens 15 additional workforce slots.',
+      name: 'Remote Talent Hubs',
+      description: 'Global remote hubs unlock 15 additional talent slots.',
       cost: 1400,
       effects: [
         {

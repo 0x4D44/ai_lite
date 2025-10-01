@@ -3,8 +3,8 @@ import type { ResearchProjectDefinition } from './types';
 export const researchProjects: ResearchProjectDefinition[] = [
   {
     id: 'logistics-analytics',
-    name: 'Logistics Analytics',
-    description: 'Data-driven routing insights boost all revenue by 20%.',
+    name: 'Label Efficiency Analytics',
+    description: 'Annotation dashboards improve labeling ROI, raising funding by 20%.',
     techCost: 120,
     researchTime: 45,
     effects: [
@@ -16,8 +16,8 @@ export const researchProjects: ResearchProjectDefinition[] = [
   },
   {
     id: 'signal-theory',
-    name: 'Advanced Signal Theory',
-    description: 'Higher quality transmission techniques increase tech gain by 30%.',
+    name: 'Optimization Algorithms',
+    description: 'Breakthrough optimization techniques increase research velocity by 30%.',
     techCost: 180,
     researchTime: 60,
     effects: [
@@ -30,8 +30,8 @@ export const researchProjects: ResearchProjectDefinition[] = [
   },
   {
     id: 'training-consortium',
-    name: 'Training Consortium',
-    description: 'Shared hiring pipelines expand workforce capacity by 12.',
+    name: 'Talent Exchange Program',
+    description: 'Exchange fellowships expand the shared talent pool by 12.',
     techCost: 260,
     researchTime: 75,
     effects: [
@@ -44,8 +44,8 @@ export const researchProjects: ResearchProjectDefinition[] = [
   },
   {
     id: 'bandwidth-overlays',
-    name: 'Bandwidth Overlays',
-    description: 'Dynamic signal overlays increase bandwidth output across the network by 40%.',
+    name: 'Synthetic Data Overlays',
+    description: 'Synthetic overlay pipelines increase data flow output by 40%.',
     techCost: 420,
     researchTime: 90,
     effects: [
@@ -58,8 +58,8 @@ export const researchProjects: ResearchProjectDefinition[] = [
   },
   {
     id: 'software-defined-networks',
-    name: 'Software-Defined Networks',
-    description: 'Programmable routing increases tech and bandwidth efficiency by 25%.',
+    name: 'Policy Gradient Infrastructure',
+    description: 'Unified policy gradient tooling improves research and data flow by 25%.',
     techCost: 680,
     researchTime: 120,
     effects: [

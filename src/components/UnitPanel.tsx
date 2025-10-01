@@ -91,7 +91,7 @@ export const UnitPanel = () => {
     <section className="panel">
       <header className="panel-header">
         <h2>{currentEra.name} Production</h2>
-        <p className="subdued">Hire units to grow income and tech.</p>
+        <p className="subdued">Scale teams to grow funding and research.</p>
         {unlockedEraIds.length > 1 && (
           <div className="era-switcher">
             {unlockedEraIds.map((eraId) => {
@@ -131,7 +131,7 @@ export const UnitPanel = () => {
                   <ResourceValue resource="money" value={formatNumber(unit.cost)} />
                 </div>
                 <div className="card-row">
-                  <span className="label">Workforce</span>
+                  <span className="label">Talent</span>
                   <ResourceValue resource="workforce" value={formatNumber(unit.workforceCost)} />
                 </div>
                 {unit.powerCost && (
@@ -141,7 +141,7 @@ export const UnitPanel = () => {
                   </div>
                 )}
                 <div className="card-row">
-                  <span className="label">Money</span>
+                  <span className="label">Funding</span>
                   <ResourceValue
                     resource="money"
                     value={
@@ -156,7 +156,7 @@ export const UnitPanel = () => {
                 </div>
                 {unit.techPerSecond > 0 && (
                   <div className="card-row">
-                    <span className="label">Tech</span>
+                    <span className="label">Research</span>
                     <ResourceValue
                       resource="tech"
                       value={
@@ -172,7 +172,7 @@ export const UnitPanel = () => {
                 )}
                 {unit.bandwidthPerSecond > 0 && (
                   <div className="card-row">
-                    <span className="label">Bandwidth</span>
+                    <span className="label">Data Flow</span>
                     <ResourceValue
                       resource="bandwidth"
                       value={
@@ -225,8 +225,8 @@ export const UnitPanel = () => {
                     Refund <ResourceValue resource="money" value={formatNumber(unit.sellValue)} />
                   </span>
                 )}
-                {!hasWorkforce && <span className="warning">Need more workforce</span>}
-                {!canAfford && hasWorkforce && <span className="warning">Insufficient funds</span>}
+                {!hasWorkforce && <span className="warning">Need more talent</span>}
+                {!canAfford && hasWorkforce && <span className="warning">Insufficient funding</span>}
               </footer>
             </article>
           );

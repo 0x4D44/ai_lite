@@ -19,9 +19,9 @@ export const PodPanel = () => {
   return (
     <section className="panel">
       <header className="panel-header">
-        <h2>Cloud Pod Orchestrator</h2>
+        <h2>Autonomous Pod Orchestrator</h2>
         <p className="subdued">
-          Compose Kubernetes pods to shape global multipliers. Pods consume compute credits every second.
+          Configure agent pods to shape global multipliers. Pods consume compute capacity every second.
         </p>
       </header>
       <div className="card-body">
@@ -31,7 +31,7 @@ export const PodPanel = () => {
         </div>
         <div className="card-row">
           <span className="label">Status</span>
-          <span>{podBonuses.suspended ? 'Suspended (insufficient compute)' : 'Operational'}</span>
+          <span>{podBonuses.suspended ? 'Suspended (insufficient compute capacity)' : 'Operational'}</span>
         </div>
       </div>
       <div className="list">
@@ -56,9 +56,9 @@ export const PodPanel = () => {
                   <ResourceValue resource="compute" value={`${formatNumber(pod.computeUpkeep)}/s`} />
                 </div>
                 <ul className="effect-list">
-                  {pod.effects.money && <li>Money {describeEffect(pod.effects.money)}</li>}
-                  {pod.effects.tech && <li>Tech {describeEffect(pod.effects.tech)}</li>}
-                  {pod.effects.bandwidth && <li>Bandwidth {describeEffect(pod.effects.bandwidth)}</li>}
+                  {pod.effects.money && <li>Funding {describeEffect(pod.effects.money)}</li>}
+                  {pod.effects.tech && <li>Research {describeEffect(pod.effects.tech)}</li>}
+                  {pod.effects.bandwidth && <li>Data Flow {describeEffect(pod.effects.bandwidth)}</li>}
                   {pod.effects.compute && <li>Compute Output {describeEffect(pod.effects.compute)}</li>}
                 </ul>
               </div>

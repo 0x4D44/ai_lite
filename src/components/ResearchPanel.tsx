@@ -27,7 +27,7 @@ export const ResearchPanel = () => {
     <section className="panel">
       <header className="panel-header">
         <h2>Research Lab</h2>
-        <p className="subdued">Spend tech progress to unlock persistent global upgrades.</p>
+        <p className="subdued">Invest research progress to unlock persistent global modifiers.</p>
       </header>
       <div className="list">
         {projects.map((project) => {
@@ -48,7 +48,7 @@ export const ResearchPanel = () => {
               </div>
               <div className="card-body">
                 <div className="card-row">
-                  <span className="label">Tech Cost</span>
+                  <span className="label">Research Cost</span>
                   <ResourceValue resource="tech" value={formatNumber(project.techCost)} />
                 </div>
                 <div className="card-row">
@@ -70,7 +70,7 @@ export const ResearchPanel = () => {
                 >
                   {owned ? 'Completed' : queued ? 'In Progress' : 'Research'}
                 </button>
-                {!owned && !canAfford && <span className="warning">Need more tech</span>}
+                {!owned && !canAfford && <span className="warning">Need more research</span>}
                 {!owned && inProgress && !queued && (
                   <span className="warning">Research queue busy</span>
                 )}

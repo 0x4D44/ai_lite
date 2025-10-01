@@ -2,13 +2,13 @@ import type { EraDefinition } from '../types';
 
 export const digitalEra: EraDefinition = {
   id: 'digital',
-  name: 'Digital Switching Era',
-  flavorText: 'Fiber links and packet switching drive explosive global communication growth.',
+  name: 'Foundation Model Era',
+  flavorText: 'Massive transformer runs and synthetic data loops reshape every product surface.',
   units: [
     {
       id: 'digital-switch',
-      name: 'Digital Switch',
-      description: 'Software-driven switches route calls with minimal latency.',
+      name: 'Transformer Training Run',
+      description: 'Orchestrates frontier-scale training cycles on dedicated clusters.',
       baseCost: 52000,
       costMultiplier: 1.22,
       workforceCost: 6,
@@ -21,8 +21,8 @@ export const digitalEra: EraDefinition = {
     },
     {
       id: 'fiber-backbone',
-      name: 'Fiber Backbone Segment',
-      description: 'High-capacity fiber links deliver massive bandwidth across continents.',
+      name: 'Synthetic Data Factory',
+      description: 'Generates tailored synthetic corpora to feed model refinement.',
       baseCost: 125000,
       costMultiplier: 1.25,
       workforceCost: 8,
@@ -35,8 +35,8 @@ export const digitalEra: EraDefinition = {
     },
     {
       id: 'data-center-node',
-      name: 'Data Center Node',
-      description: 'Regional data centers provide compute for digital switching and services.',
+      name: 'Inference Megacenter',
+      description: 'Regional megacenters serve billions of requests with adaptive caching.',
       baseCost: 260000,
       costMultiplier: 1.28,
       workforceCost: 10,
@@ -51,8 +51,8 @@ export const digitalEra: EraDefinition = {
   upgrades: [
     {
       id: 'software-automation',
-      name: 'Software Automation',
-      description: 'Automated orchestration increases digital switch revenue by 35%.',
+      name: 'Self-Tuning Pipelines',
+      description: 'Adaptive training pipelines raise Transformer Training funding by 35% and amplify research.',
       cost: 145000,
       effects: [
         {
@@ -68,8 +68,8 @@ export const digitalEra: EraDefinition = {
     },
     {
       id: 'dense-wave-multiplexing',
-      name: 'Dense Wave Multiplexing',
-      description: 'Fiber backbone bandwidth output jumps 60%.',
+      name: 'Multimodal Compression',
+      description: 'Compression breakthroughs boost synthetic data revenue and data flow.',
       cost: 210000,
       effects: [
         {
@@ -85,8 +85,8 @@ export const digitalEra: EraDefinition = {
     },
     {
       id: 'edge-compute',
-      name: 'Edge Compute Fleet',
-      description: 'Distributed compute adds 30 workforce capacity and increases overall revenue.',
+      name: 'Edge Accelerator Network',
+      description: 'Edge accelerators add 30 talent capacity and increase all funding by 20%.',
       cost: 295000,
       effects: [
         {

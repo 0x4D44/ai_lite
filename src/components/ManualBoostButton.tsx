@@ -26,7 +26,7 @@ export const ManualBoostButton = () => {
 
   let statusText = 'Ready';
   if (isActive) {
-    statusText = `Active: ${formatCountdown(activeRemaining)}`;
+    statusText = `Sprint active: ${formatCountdown(activeRemaining)}`;
   } else if (inCooldown) {
     statusText = `Cooldown: ${formatCountdown(cooldownRemaining)}`;
   }
@@ -34,17 +34,17 @@ export const ManualBoostButton = () => {
   return (
     <section className="panel">
       <header className="panel-header">
-        <h2>Manual Boost</h2>
+        <h2>Hackathon Sprint</h2>
       </header>
       <div className="boost-card">
-        <p className="subdued">Trigger a temporary production surge.</p>
+        <p className="subdued">Mobilize the org for a short burst of production momentum.</p>
         <button
           type="button"
           className={`primary large ${isActive ? 'active' : ''}`}
           onClick={() => activate()}
           disabled={isActive || inCooldown}
         >
-          Boost Signal (x{manualBoost.multiplier} for {manualBoost.duration}s)
+          Launch Sprint (x{manualBoost.multiplier} for {manualBoost.duration}s)
         </button>
         <p className="boost-status">{statusText}</p>
       </div>

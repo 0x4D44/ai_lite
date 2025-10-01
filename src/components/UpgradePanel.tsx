@@ -13,7 +13,7 @@ export const UpgradePanel = () => {
     <section className="panel">
       <header className="panel-header">
         <h2>Upgrades</h2>
-        <p className="subdued">Permanent boosts to production and capacity.</p>
+        <p className="subdued">Permanent boosts to funding, research, and capacity.</p>
       </header>
       <div className="list">
         {era.upgrades.map((upgrade) => {
@@ -50,7 +50,7 @@ export const UpgradePanel = () => {
                 >
                   {owned ? 'Purchased' : 'Purchase'}
                 </button>
-                {!owned && !canAfford && <span className="warning">Insufficient funds</span>}
+                {!owned && !canAfford && <span className="warning">Insufficient funding</span>}
               </footer>
             </article>
           );

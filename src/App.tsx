@@ -17,17 +17,20 @@ import { NicknameForm } from './components/NicknameForm';
 import { selectCurrentEra, useGameStore } from './state/gameStore';
 import { useGameLoop } from './state/useGameLoop';
 
-type MainTab = 'production' | 'research' | 'amplifier' | 'cloud' | 'leaderboard' | 'settings';
+type MainTab = 'production' | 'research' | 'accelerator' | 'pods' | 'leaderboard' | 'settings';
 
 function App() {
   useGameLoop();
   const era = useGameStore(selectCurrentEra);
   const [activeTab, setActiveTab] = useState<MainTab>('production');
 
+  const hasAccelerator = useGameStore((state) => state.unlockedEraIds.includes('digital'));
+  const hasPods = useGameStore((state) => state.unlockedEraIds.includes('cloud-native'));
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Telecom Idle</h1>
+        <h1>AI Idle</h1>
         <p className="subdued">{era.flavorText}</p>
       </header>
       <main className="app-content">
@@ -52,22 +55,22 @@ function App() {
             >
               Research
             </button>
-            {useGameStore((state) => state.unlockedEraIds.includes('digital')) && (
+            {hasAccelerator && (
               <button
                 type="button"
-                className={`tab-button ${activeTab === 'amplifier' ? 'tab-active' : ''}`}
-                onClick={() => setActiveTab('amplifier')}
+                className={`tab-button ${activeTab === 'accelerator' ? 'tab-active' : ''}`}
+                onClick={() => setActiveTab('accelerator')}
               >
-                Amplifier
+                Accelerator
               </button>
             )}
-            {useGameStore((state) => state.unlockedEraIds.includes('cloud-native')) && (
+            {hasPods && (
               <button
                 type="button"
-                className={`tab-button ${activeTab === 'cloud' ? 'tab-active' : ''}`}
-                onClick={() => setActiveTab('cloud')}
+                className={`tab-button ${activeTab === 'pods' ? 'tab-active' : ''}`}
+                onClick={() => setActiveTab('pods')}
               >
-                Cloud Ops
+                Agent Pods
               </button>
             )}
             <button
@@ -102,14 +105,14 @@ function App() {
               </div>
               <div className="column-side" />
             </div>
-          ) : activeTab === 'amplifier' ? (
+          ) : activeTab === 'accelerator' ? (
             <div className="tab-panels">
               <div className="column-main">
                 <BandwidthBoostPanel />
               </div>
               <div className="column-side" />
             </div>
-          ) : activeTab === 'cloud' ? (
+          ) : activeTab === 'pods' ? (
             <div className="tab-panels">
               <div className="column-main">
                 <PodPanel />

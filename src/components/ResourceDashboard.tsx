@@ -28,7 +28,7 @@ export const ResourceDashboard = () => {
       </header>
       <div className="resource-grid">
         <div className="resource-card">
-          <span className="label">Money</span>
+          <span className="label">Funding</span>
           <span className="value">
             <ResourceValue resource="money" value={formatNumber(resources.money)} />
           </span>
@@ -37,7 +37,7 @@ export const ResourceDashboard = () => {
           </span>
         </div>
         <div className="resource-card">
-          <span className="label">Tech Progress</span>
+          <span className="label">Research</span>
           <span className="value">
             <ResourceValue resource="tech" value={formatNumber(resources.tech)} />
           </span>
@@ -46,17 +46,17 @@ export const ResourceDashboard = () => {
           </span>
         </div>
         <div className="resource-card">
-          <span className="label">Workforce</span>
+          <span className="label">Talent</span>
           <span className="value">
             <ResourceValue resource="workforce" value={`${usedWorkforce} / ${totalWorkforce}`} />
           </span>
           <span className="rate">
-            <ResourceValue resource="workforce" value={`${formatNumber(availableWorkforce)} idle`} />
+            <ResourceValue resource="workforce" value={`${formatNumber(availableWorkforce)} talent available`} />
           </span>
         </div>
         {telegraphUnlocked && (
           <div className="resource-card">
-            <span className="label">Bandwidth</span>
+            <span className="label">Data Flow</span>
             <span className="value">
               <ResourceValue resource="bandwidth" value={formatNumber(bandwidth)} />
             </span>
@@ -67,7 +67,7 @@ export const ResourceDashboard = () => {
         )}
         {digitalUnlocked && (
           <div className="resource-card">
-            <span className="label">Compute Credits</span>
+            <span className="label">Compute Capacity</span>
             <span className="value">
               <ResourceValue resource="compute" value={formatNumber(compute)} />
             </span>

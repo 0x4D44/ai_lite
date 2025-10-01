@@ -4,9 +4,9 @@ import { useGameStore } from '../state/gameStore';
 
 const AMPLIFIER_TIERS = [
   { id: 'off', label: 'Off', cost: 0, bonus: 0 },
-  { id: 'low', label: '5 /s → +15% tech', cost: 5, bonus: 0.15 },
-  { id: 'medium', label: '25 /s → +35% tech', cost: 25, bonus: 0.35 },
-  { id: 'high', label: '100 /s → +75% tech', cost: 100, bonus: 0.75 },
+  { id: 'low', label: '5 /s -> +15% research', cost: 5, bonus: 0.15 },
+  { id: 'medium', label: '25 /s -> +35% research', cost: 25, bonus: 0.35 },
+  { id: 'high', label: '100 /s -> +75% research', cost: 100, bonus: 0.75 },
 ] as const;
 
 type AmplifierTierId = (typeof AMPLIFIER_TIERS)[number]['id'];
@@ -27,8 +27,8 @@ export const BandwidthBoostPanel = () => {
   return (
     <section className="panel">
       <header className="panel-header">
-        <h2>Bandwidth Amplifier</h2>
-        <p className="subdued">Trade bandwidth for accelerated tech research gains.</p>
+        <h2>Data Flow Accelerator</h2>
+        <p className="subdued">Trade data flow reserves for accelerated research gains.</p>
       </header>
       <div className="card-body">
         <div className="card-row">
@@ -36,7 +36,7 @@ export const BandwidthBoostPanel = () => {
           <span>{activeTier.label}</span>
         </div>
         <div className="card-row">
-          <span className="label">Bandwidth Stock</span>
+          <span className="label">Data Flow Stock</span>
           <ResourceValue resource="bandwidth" value={formatNumber(bandwidth)} />
         </div>
         <div className="card-row">
@@ -61,10 +61,10 @@ export const BandwidthBoostPanel = () => {
           );
         })}
         {!canSustain && activeTier.cost > 0 && (
-          <span className="warning">Generation below upkeep; reserves will drain</span>
+          <span className="warning">Data flow generation below upkeep; reserves will drain</span>
         )}
         {activeTier.cost > 0 && bandwidth <= 0 && (
-          <span className="warning">Need bandwidth available to start</span>
+          <span className="warning">Need data flow available to start</span>
         )}
       </footer>
     </section>

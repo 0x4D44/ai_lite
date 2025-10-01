@@ -2,13 +2,13 @@ import type { EraDefinition } from '../types';
 
 export const telephoneEra: EraDefinition = {
   id: 'telephone',
-  name: 'Telephone Switchboard Era',
-  flavorText: 'Automated exchanges and long-distance lines unlock mass-market telephony.',
+  name: 'Cloud AI Services',
+  flavorText: 'Managed AI platforms and APIs bring intelligent capabilities to every industry.',
   units: [
     {
       id: 'switchboard-operator',
-      name: 'Switchboard Operator',
-      description: 'Connects calls manually while monitoring line usage.',
+      name: 'AI Support Ops',
+      description: 'Specialists guide customers through AI adoption and troubleshoot deployments.',
       baseCost: 4200,
       costMultiplier: 1.2,
       workforceCost: 4,
@@ -21,8 +21,8 @@ export const telephoneEra: EraDefinition = {
     },
     {
       id: 'automatic-exchange',
-      name: 'Automatic Exchange',
-      description: 'Mechanical switching reduces manual labor and increases throughput.',
+      name: 'Managed ML Platform',
+      description: 'Fully managed training and deployment pipelines monetise subscription demand.',
       baseCost: 8800,
       costMultiplier: 1.24,
       workforceCost: 5,
@@ -35,8 +35,8 @@ export const telephoneEra: EraDefinition = {
     },
     {
       id: 'microwave-relay',
-      name: 'Microwave Relay Tower',
-      description: 'Line-of-sight towers push high-capacity signals across regions.',
+      name: 'Edge Deployment Network',
+      description: 'Federated edge clusters push low-latency models worldwide.',
       baseCost: 22500,
       costMultiplier: 1.28,
       workforceCost: 6,
@@ -51,8 +51,8 @@ export const telephoneEra: EraDefinition = {
   upgrades: [
     {
       id: 'operator-training',
-      name: 'Operator Training Protocols',
-      description: 'Skilled operators handle more connections, increasing income by 30%.',
+      name: 'Ops Playbooks',
+      description: 'Codified playbooks let support ops close more deals, raising funding by 30%.',
       cost: 14000,
       effects: [
         {
@@ -64,8 +64,8 @@ export const telephoneEra: EraDefinition = {
     },
     {
       id: 'relay-optimization',
-      name: 'Relay Optimization',
-      description: 'Optimized relays lift exchange revenue and boost bandwidth generation.',
+      name: 'Feature Store Tuning',
+      description: 'Optimised feature stores lift platform revenue, research, and data flow.',
       cost: 19500,
       effects: [
         {
@@ -85,8 +85,8 @@ export const telephoneEra: EraDefinition = {
     },
     {
       id: 'carrier-multiplexing',
-      name: 'Carrier Multiplexing',
-      description: 'New modulation multiplies bandwidth capacity by 35%.',
+      name: 'Federated Channels',
+      description: 'Distributed partner channels expand global funding by 25% and add 20 talent.',
       cost: 32000,
       effects: [
         {

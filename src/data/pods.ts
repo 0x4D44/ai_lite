@@ -17,19 +17,19 @@ export interface PodDefinition {
 export const POD_DEFINITIONS: PodDefinition[] = [
   {
     id: 'ingress-gateway',
-    name: 'Ingress Gateway Pods',
-    description: 'Balance traffic and monetize low-latency entry points. Boosts revenue and bandwidth.',
+    name: 'Data Ingestion Nodes',
+    description: 'Adaptive intake services grow funding and data flow efficiency.',
     computeUpkeep: 150,
     effects: {
-      money: 0.20,
-      bandwidth: 0.10,
+      money: 0.2,
+      bandwidth: 0.1,
     },
     max: 6,
   },
   {
     id: 'service-mesh',
-    name: 'Service Mesh Pods',
-    description: 'Advanced routing and resilience increase tech innovation and bandwidth capacity.',
+    name: 'Feature Engineering Pods',
+    description: 'Collaborative feature teams accelerate research and expand data flow.',
     computeUpkeep: 220,
     effects: {
       tech: 0.25,
@@ -39,8 +39,8 @@ export const POD_DEFINITIONS: PodDefinition[] = [
   },
   {
     id: 'observability-stack',
-    name: 'Observability Stack Pods',
-    description: 'Telemetry and auto-healing improve efficiency, increasing money and compute output.',
+    name: 'Model Monitoring Stack',
+    description: 'Monitoring suites surface insights, increasing funding and compute output.',
     computeUpkeep: 180,
     effects: {
       money: 0.15,
@@ -50,12 +50,12 @@ export const POD_DEFINITIONS: PodDefinition[] = [
   },
   {
     id: 'ai-optimizer',
-    name: 'AI Optimizer Pods',
-    description: 'Predictive scaling and call optimization explode revenue and tech growth.',
+    name: 'Autonomous Optimizer Pods',
+    description: 'Self-improving optimizers amplify funding, research, and data flow growth.',
     computeUpkeep: 350,
     effects: {
       money: 0.35,
-      tech: 0.30,
+      tech: 0.3,
       bandwidth: 0.25,
     },
     max: 4,

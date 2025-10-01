@@ -7,8 +7,8 @@ import { useGameStore } from '../state/gameStore';
 import { selectProfile, selectStatistics } from '../state/gameStore';
 
 const VIEW_OPTIONS: { id: LeaderboardView; label: string }[] = [
-  { id: 'money', label: 'Total Money' },
-  { id: 'cloud_time', label: 'Fastest Cloud Native Unlock' },
+  { id: 'money', label: 'Total Funding' },
+  { id: 'cloud_time', label: 'Fastest Autonomous Intelligence Unlock' },
 ];
 
 const formatScore = (view: LeaderboardView, score: number) => {
@@ -81,7 +81,7 @@ export const LeaderboardPanel = () => {
       <header className="panel-header">
         <h2>Leaderboard</h2>
         <p className="subdued">
-          Compare total earnings or speedrun the Cloud Native unlock. Submit a score once you’re ready.
+          Compare total funding or speedrun the Autonomous Intelligence unlock. Submit a score once you're ready.
         </p>
       </header>
       {!configured && (
@@ -107,11 +107,11 @@ export const LeaderboardPanel = () => {
           <span>{nickname || 'Set a nickname below'}</span>
         </div>
         <div className="card-row">
-          <span className="label">Total Money Earned</span>
+          <span className="label">Total Funding Earned</span>
           <span>{`$${formatNumber(statistics.totalMoneyEarned)}`}</span>
         </div>
         <div className="card-row">
-          <span className="label">Cloud Native Unlock</span>
+          <span className="label">Autonomous Intelligence Unlock</span>
           <span>
             {statistics.cloudNativeUnlockedAt
               ? formatScore(
@@ -129,7 +129,7 @@ export const LeaderboardPanel = () => {
         {message && <span className="subdued">{message}</span>}
       </footer>
       <div className="list" style={{ marginTop: '1rem' }}>
-        {loading && <span className="subdued">Loading leaderboard…</span>}
+        {loading && <span className="subdued">Loading leaderboard�</span>}
         {error && <span className="warning">{error}</span>}
         {!loading && entries.length === 0 && configured && <span className="subdued">No scores yet.</span>}
         {!loading &&

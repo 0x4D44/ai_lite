@@ -1,0 +1,134 @@
+# AI Idle
+
+AI Idle is an incremental management game about scaling successive waves of artificial intelligence breakthroughs. Each era introduces new teams, platforms, and automation layers that outclass the previous generation, letting funding accelerate whenever you invest smartly in talent, research, and infrastructure.
+
+## Current Status
+
+- High-level decisions live in `FOUNDATION_DECISIONS.md`
+- Detailed plan and notes live in `docs/GAME_DESIGN_PLAN.md`
+- React + TypeScript + Vite project with five eras implemented (Data Labeling Frontier through Autonomous Intelligence)
+- Upcoming: prestige loop, additional balance passes, thematic audio/visual polish
+
+## Running the Project
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server runs at `http://localhost:5173`. Progress auto-saves to `localStorage` every tick so reloads are seamless.
+
+## Project Structure
+
+- `src/data/` – Declarative era, research, and pod definitions
+- `src/state/` – Zustand store, simulation loop, and selectors
+- `src/components/` – UI panels for resources, units, upgrades, and progression
+- `docs/` – Design documents and future planning notes
+- `designs/` – Latest high-level design snapshots (AI retheme captured in `2025.10.01 - HLD.md`)
+
+## Gameplay Outline
+
+- Earn funding passively from unlocked AI era units and reinvest in stronger teams or upgrades.
+- Manage talent capacity; every unit consumes specialists and upgrades expand the pool.
+- Launch Hackathon Sprints for temporary production spikes on a cooldown.
+- Meet funding, research, and data flow goals to unlock the next era in the tech ladder.
+- Decommission legacy teams to reclaim talent and partial refunds when strategy shifts.
+- Generate data flow and compute to gate later-era research, pods, and foundation model runs.
+- Route data flow through the accelerator to trade throughput for faster research.
+- In the Autonomous Intelligence era, configure agent pods to shape global multipliers.
+
+## Deploying to GitHub Pages
+
+This repository still publishes to `https://<your-username>.github.io/telecom_idle/` by default (update the Vite base path if you rename the project).
+
+1. Push the latest changes to `main`.
+2. In GitHub, open **Settings > Pages** and choose **GitHub Actions** as the source.
+3. Run the `Deploy to GitHub Pages` workflow (under `.github/workflows/deploy.yml`) to build and upload `dist/`.
+4. When the workflow finishes, the public URL appears in the workflow summary and on the Pages settings screen.
+
+## Leaderboard Backend
+
+The optional leaderboard expects a simple REST endpoint with two routes:
+
+```
+GET  /leaderboard?view=money|cloud_time  -> returns [{ nickname, score, recordedAt }]
+POST /submit                            -> accepts { nickname, totalMoney, cloudTimeSeconds }
+```
+
+Host it anywhere (Cloudflare Workers, Fly.io, etc.). Point the client at your endpoint via:
+
+```
+VITE_LEADERBOARD_ENDPOINT=https://your-worker.example.workers.dev
+```
+
+Without this environment variable the leaderboard UI stays in read-only/demo mode.
+
+### Example Cloudflare Worker
+
+```ts
+// worker.ts
+import { Env } from './env';
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
+
+    if (request.method === 'POST' && url.pathname === '/submit') {
+      const body = await request.json();
+      const entries = await getEntries(env);
+      entries.push({
+        nickname: body.nickname ?? 'Anonymous',
+        scoreMoney: body.totalMoney ?? 0,
+        scoreCloud: body.cloudTimeSeconds ?? null,
+        recordedAt: new Date().toISOString(),
+      });
+      await env.LEADERBOARD.put('entries', JSON.stringify(entries));
+      return new Response('ok');
+    }
+
+    if (request.method === 'GET' && url.pathname === '/leaderboard') {
+      const view = url.searchParams.get('view') === 'cloud_time' ? 'cloud_time' : 'money';
+      const entries = await getEntries(env);
+      const sorted = entries
+        .filter((entry) => (view === 'money' ? true : entry.scoreCloud !== null))
+        .sort((a, b) =>
+          view === 'money'
+            ? b.scoreMoney - a.scoreMoney
+            : (a.scoreCloud ?? Infinity) - (b.scoreCloud ?? Infinity),
+        )
+        .slice(0, 50)
+        .map((entry) => ({
+          nickname: entry.nickname,
+          score: view === 'money' ? entry.scoreMoney : entry.scoreCloud,
+          recordedAt: entry.recordedAt,
+        }));
+      return Response.json(sorted);
+    }
+
+    return new Response('Not Found', { status: 404 });
+  },
+};
+
+type Entry = {
+  nickname: string;
+  scoreMoney: number;
+  scoreCloud: number | null;
+  recordedAt: string;
+};
+
+async function getEntries(env: Env): Promise<Entry[]> {
+  const stored = await env.LEADERBOARD.get('entries');
+  return stored ? (JSON.parse(stored) as Entry[]) : [];
+}
+```
+
+Bind a KV namespace named `LEADERBOARD` in `wrangler.toml`, deploy, and set `VITE_LEADERBOARD_ENDPOINT` to the worker URL.
+
+## Next Steps
+
+1. Polish the AI visual and audio theme (neon palette, GPU/agent iconography, ambient SFX).
+2. Explore prestige/reset mechanics to extend long-term replayability.
+3. Expand automated testing for store logic and offline catch-up.
+4. Iterate on balance data to keep each era transition punchy and meaningful.
+
+Contributions and design tweaks are welcome—update the docs in `docs/` or drop new notes under `designs/` as the vision evolves.

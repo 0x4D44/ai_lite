@@ -9,7 +9,7 @@ const normalizeBase = (basePath?: string): string => {
   return trimmed.length > 0 ? `/${trimmed}/` : '/';
 };
 
-const repoBase = normalizeBase(process.env.VITE_BASE_PATH ?? 'telecom_idle');
+const repoBase = normalizeBase(process.env.VITE_BASE_PATH ?? 'ai-idle');
 
 export default defineConfig({
   base: process.env.GITHUB_ACTIONS ? repoBase : '/',

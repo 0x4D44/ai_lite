@@ -871,7 +871,7 @@ export const useGameStore = create<GameState>()(
       },
     }),
     {
-      name: 'telecom-idle-v1',
+      name: 'ai-idle-v1',
       version: 1,
       partialize: (state) => ({
         currentEraId: state.currentEraId,

@@ -34,13 +34,16 @@ function App() {
         <p className="subdued">{era.flavorText}</p>
       </header>
       <main className="app-content">
-        <ResourceDashboard />
-        <div className="utility-grid">
-          <ManualBoostButton />
-          <EraProgress />
-        </div>
-        <section className="tabbed-content">
-          <nav className="tab-bar">
+        <section className="app-column app-column--sidebar">
+          <ResourceDashboard />
+          <div className="utility-grid">
+            <ManualBoostButton />
+            <EraProgress />
+          </div>
+        </section>
+        <section className="app-column app-column--main">
+          <section className="tabbed-content">
+            <nav className="tab-bar">
             <button
               type="button"
               className={`tab-button ${activeTab === 'production' ? 'tab-active' : ''}`}
@@ -134,6 +137,7 @@ function App() {
               </div>
             </div>
           )}
+          </section>
         </section>
       </main>
     </div>

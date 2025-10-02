@@ -2,12 +2,21 @@
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #e6edff;
-  background-color: #050b1d;
+  color: var(--color-text-primary);
+  background-color: #040011;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --color-text-primary: #f4edff;
+  --color-bg: #040011;
+  --color-bg-grad-top: rgba(107, 32, 203, 0.6);
+  --color-bg-grad-mid: rgba(24, 9, 47, 0.92);
+  --color-panel-shadow: rgba(34, 10, 52, 0.45);
+  --color-primary-start: #ff6ad5;
+  --color-primary-end: #8c5dff;
+  --color-primary-text: #15081f;
+  --color-primary-shadow: rgba(255, 106, 213, 0.35);
 }
 
 *,
@@ -28,8 +37,10 @@ a:hover {
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, rgba(17, 34, 89, 0.8), #050b1d 70%),
-    linear-gradient(180deg, rgba(5, 11, 29, 0.9) 0%, rgba(2, 7, 18, 0.95) 100%);
+  background:
+    radial-gradient(circle at 18% -10%, rgba(118, 47, 224, 0.35), transparent 52%),
+    radial-gradient(circle at 82% 0%, rgba(255, 106, 213, 0.28), transparent 58%),
+    linear-gradient(180deg, var(--color-bg-grad-top) 0%, var(--color-bg-grad-mid) 55%, var(--color-bg) 100%);
 }
 
 #root {
@@ -39,6 +50,6 @@ body {
 a:focus,
 button:focus,
 button:focus-visible {
-  outline: 2px solid rgba(115, 224, 255, 0.8);
+  outline: 2px solid rgba(255, 106, 213, 0.65);
   outline-offset: 2px;
 }
